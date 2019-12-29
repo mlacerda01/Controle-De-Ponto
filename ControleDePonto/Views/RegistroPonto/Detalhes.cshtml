@@ -1,0 +1,64 @@
+﻿@model ControleDePonto.Models.RegistroPonto
+@{
+    ViewData["Title"] = "Detalhes Registro";
+}
+
+<h1>Detalhes Registro</h1>
+
+<hr />
+<div class="row">
+    <form class="form-group col-lg-8" method="post">
+
+        <div class="form-row">
+            <div class="form-group col-lg-4">
+                <label asp-for="Date"></label>
+                <input class="form-control" type="date" asp-for="Date" disabled />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-6">
+                <label asp-for="HoraEntrada"></label>
+                <input class="form-control" type="time" asp-for="HoraEntrada" disabled />
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="HoraSaidaAlmoco"></label>
+                <input class="form-control" type="time" asp-for="HoraSaidaAlmoco" disabled />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-6">
+                <label asp-for="HoraRetornoAlmoco"></label>
+                <input class="form-control" type="time" asp-for="HoraRetornoAlmoco" disabled />
+            </div>
+            <div class="form-group col-lg-6">
+                <label asp-for="HoraSaida"></label>
+                <input class="form-control" type="time" asp-for="HoraSaida" disabled />
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-6">
+                <label asp-for="TotalHoras"></label>
+                <input class="form-control" type="time" asp-for="TotalHoras" disabled />
+            </div>
+            <div class="form-group col-lg-6">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-lg-12">
+                <label asp-for="DescricaoAtividades"></label>
+                <textarea rows="5" cols="160" class="form-control" asp-for="DescricaoAtividades" disabled></textarea>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-sm-2">
+                <a asp-action="Index" class="btn btn-primary">Voltar</a>
+            </div>
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ControleDePonto.Models.RegistroPonto>
+@{
+    ViewData["Title"] = "Index";
+}
+<style>
+    table tr td{
+        text-align: center;
+    }
+
+    table th{
+        text-align: center;
+    }
+</style>
+
+<div class="form-group">
+    <div class="col-lg-4">
+        <a href="@Url.Action("Adicionar", "RegistroPonto")" class="btn btn-primary" style="color:#ffffff;">Adicionar</a>
+        <a href="@Url.Action("GerarExcel", "RegistroPonto")" class="btn btn-primary" style="color:#ffffff;">Exportar</a>
+    </div>  
+</div>
+<div class="form-group col-lg-12">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Data</th>
+                <th>Entrada</th>
+                <th>Saida Almoço</th>
+                <th>Retorno Almoço</th>
+                <th>Saida</th>
+                <th>Total Horas</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                    <td>@item.HoraEntrada</td>
+                    <td>@item.HoraSaidaAlmoco</td>
+                    <td>@item.HoraRetornoAlmoco</td>
+                    <td>@item.HoraSaida</td>
+                    <td>@item.TotalHoras</td>
+                    @*<td>@item.TotalHorasConvertidas</td>*@
+                    <td>@item.DescricaoAtividades</td>
+                    <td>
+                        <a asp-action="Atualizar" asp-route-id="@item.CodRegistro" class="btn btn-info">Editar</a>
+                        <a asp-action="Detalhes" asp-route-id="@item.CodRegistro" class="btn btn-warning">Detalhes</a>
+                        <a asp-action="Deletar" asp-route-id="@item.CodRegistro" class="btn btn-danger" onclick="return confirm('Deseja Realmente excluir este registro?')">Exluir</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>
+</div>
