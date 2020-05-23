@@ -30,7 +30,7 @@ namespace ControleDePonto.Controllers
         }
 
         [HttpGet]
-        public IActionResult Adicionar()
+        public IActionResult Adicionar(int? id)
         {
             return View();
         }
@@ -70,9 +70,19 @@ namespace ControleDePonto.Controllers
             if (!id.HasValue)
                 return NotFound();
 
-            var registro = _registroPonto.Delete(id.Value);
+            var registro = _registroPonto.Get(id.Value);
 
-            return RedirectToAction("Index", "RegistroPonto");
+            return View(registro);
+        }
+        [HttpPost]
+        public IActionResult Deletar(RegistroPonto registro)
+        {           
+            if(registro.CodRegistro == 0)
+                return View();
+            
+            ViewBag.CodMensagem = _registroPonto.Delete(registro.CodRegistro);
+            return RedirectToAction("Index");
+            
         }
 
         [HttpGet]

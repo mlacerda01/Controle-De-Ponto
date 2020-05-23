@@ -1,0 +1,36 @@
+﻿@model RegistroPonto
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" style="background:black; color:#ffffff;">
+            <a type="button" asp-action="Index" class="close" style="color:#ffffff;" data-dismiss="modal">x</a>
+            <h4 class="modal-title" style="color:#ffffff;">Confirmação de Operação</h4>
+        </div>
+        <div class="modal-body">
+            <form asp-action="Deletar" id="frmExclusaoPonto">
+                <input type="hidden" asp-for="CodRegistro" />
+            </form>
+
+            <h5>Confirma a exclusão do registro @Model.CodRegistro?</h5>
+
+        </div>
+        <div class="modal-footer">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-default" onclick="excluirRegistro();" style="background: black;color: #ffffff;">Excluir</a>
+                    <a asp-action="Index" class="btn btn-default" style="background:black; color:#ffffff;">Voltar</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function excluirRegistro() {
+        document.getElementById("frmExclusaoPonto").submit();
+    }
+</script>

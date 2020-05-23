@@ -1,57 +1,68 @@
 ﻿@model ControleDePonto.Models.RegistroPonto
-@{
-    ViewData["Title"] = "Novo Registro";
-}
 
-<h1>Novo Registro</h1>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header" style="background:black; color:#ffffff; color:#ffffff;">
+            <a type="button" asp-action="Index" class="close" style="color:#ffffff;" data-dismiss="modal">x</a>
+            <h4 class="modal-title">Editar Registro</h4>
+        </div>
+        <form asp-action="Adicionar" id="frmCadastroPonto" class="form-group col-md-12" method="post">
 
-<hr />
-<div class="row">
-    <form asp-action="Adicionar" class="form-group col-lg-8" method="post">
-        <div class="form-row">
-            <div class="form-group col-lg-3">
-                <label asp-for="Date"></label>
-                <input class="form-control" type="date" asp-for="Date" />
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group col-md-5">
+                        <label asp-for="Date"></label>
+                        <input class="form-control" type="date" asp-for="Date" />
+                    </div>
+                    <div class="form-group col-md-8">
+
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="HoraEntrada" style="box-sizing:inherit;"></label>
+                        <input class="form-control" type="time" asp-for="HoraEntrada" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="HoraSaidaAlmoco"></label>
+                        <input class="form-control" type="time" asp-for="HoraSaidaAlmoco" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label asp-for="HoraRetornoAlmoco"></label>
+                        <input class="form-control" type="time" asp-for="HoraRetornoAlmoco" />
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label asp-for="HoraSaida"></label>
+                        <input class="form-control" type="time" asp-for="HoraSaida" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label asp-for="DescricaoAtividades" style="box-sizing:inherit;"></label>
+                        <textarea rows="5" cols="160" class="form-control" asp-for="DescricaoAtividades"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="modal-footer">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Cadastrar" onclick="cadastrarPonto();" class="btn btn-primary" style="background:black; color:#ffffff;" />
+                    <a asp-action="Index" class="btn btn-primary" style="background:black; color:#ffffff;">Voltar</a>
+                </div>
+
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-lg-6">
-                <label asp-for="HoraEntrada" style="box-sizing:inherit;"></label>
-                <input class="form-control" type="time" asp-for="HoraEntrada" />
-            </div>
-            <div class="form-group col-lg-6">
-                <label asp-for="HoraSaidaAlmoco"></label>
-                <input class="form-control" type="time" asp-for="HoraSaidaAlmoco" />
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group col-lg-6">
-                <label asp-for="HoraRetornoAlmoco" style="box-sizing:inherit;"></label>
-                <input class="form-control" type="time" asp-for="HoraRetornoAlmoco" />
-            </div>
-            <div class="form-group col-lg-6">
-                <label asp-for="HoraSaida" style="box-sizing:inherit;"></label>
-                <input class="form-control" type="time" asp-for="HoraSaida" />
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-lg-12">
-                <label asp-for="DescricaoAtividades" style="box-sizing:inherit;"></label>
-                <textarea rows="5" cols="160" class="form-control" asp-for="DescricaoAtividades"></textarea>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="col-sm-2">
-                <input type="submit" value="Cadastrar" class="btn btn-primary" />
-            </div>
-            <div class="col-sm-2">
-                <a asp-action="Index" class="btn btn-primary">Voltar</a>
-            </div>
-
-        </div>
-    </form>
+    </div>
 </div>
+
+<script>
+    function cadastrarPonto() {
+        document.getElementById("frmCadastroPonto").submit();
+    }
+</script>

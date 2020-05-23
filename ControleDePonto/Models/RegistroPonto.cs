@@ -19,7 +19,7 @@ namespace ControleDePonto.Models
         public TimeSpan HoraEntrada { get; set; }
         [Display(Name = "Saída Almoço")]
         public TimeSpan HoraSaidaAlmoco { get; set; }
-        [Display(Name = "Retorno Almoço")]
+        [Display(Name = "Volta Almoço")]
         public TimeSpan HoraRetornoAlmoco { get; set; }
         [Display(Name = "Saída")]
         public TimeSpan HoraSaida { get; set; }

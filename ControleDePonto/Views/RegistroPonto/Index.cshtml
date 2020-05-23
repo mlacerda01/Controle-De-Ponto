@@ -1,56 +1,109 @@
 ﻿@model IEnumerable<ControleDePonto.Models.RegistroPonto>
-@{
-    ViewData["Title"] = "Index";
-}
+
 <style>
-    table tr td{
+
+    table tr td {
         text-align: center;
     }
 
-    table th{
+    table th {
         text-align: center;
     }
 </style>
 
-<div class="form-group">
-    <div class="col-lg-4">
-        <a href="@Url.Action("Adicionar", "RegistroPonto")" class="btn btn-primary" style="color:#ffffff;">Adicionar</a>
-        <a href="@Url.Action("GerarExcel", "RegistroPonto")" class="btn btn-primary" style="color:#ffffff;">Exportar</a>
-    </div>  
+<div class="panel panel-primary" style="border-color:black;">
+    <div class="panel-heading" style="background-color:black;">
+        <strong>Listagem de Ponto</strong>
+    </div>
+    <div class="panel-body">
+        <div class="form-group col-lg-12">
+            <table class="table table-hover" id="myTable">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Entrada</th>
+                        <th>Saida Almoço</th>
+                        <th>Retorno Almoço</th>
+                        <th>Saida</th>
+                        <th>Total Horas</th>
+                        <th>Descrição</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@item.HoraEntrada</td>
+                            <td>@item.HoraSaidaAlmoco</td>
+                            <td>@item.HoraRetornoAlmoco</td>
+                            <td>@item.HoraSaida</td>
+                            <td>@item.TotalHoras</td>
+                            @*<td>@item.TotalHorasConvertidas</td>*@
+                            <td>@item.DescricaoAtividades</td>
+                            <td>
+                                <button class="btn btn-default edit" data-id="@item.CodRegistro"><i class="glyphicon glyphicon-edit" title="Editar"></i></button>
+                                <button class="btn btn-default details" data-id="@item.CodRegistro"><i class="glyphicon glyphicon-file" title="Detalhes"></i></button> 
+                                <button class="btn btn-default delete" data-id="@item.CodRegistro"><i class="glyphicon glyphicon-remove" title="Excluir" ></i></button>                                
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <!--As telas seram carregadas dentro desse modal-->
+        <div class="modal" id="modal">
+
+        </div>
+    </div>
+    <div class="panel-footer" style="padding-bottom:25px;">
+        <div class="form-group">
+            <div class="form-group col-lg-9">
+                <p>
+                    <b>
+                        Total de registros: @Model.Count()
+                    </b>
+                </p>
+            </div>
+            <div class="form-group col-lg-3" style="text-align:right;">
+                <button class="btn btn-default novo" style="background:black; color:#ffffff;">Cadastrar</button>
+                <a href="@Url.Action("GerarExcel", "RegistroPonto")" class="btn btn-default" style="background:black; color:#ffffff;">Exportar</a>
+            </div>
+        </div>
+    </div>    
 </div>
-<div class="form-group col-lg-12">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>Data</th>
-                <th>Entrada</th>
-                <th>Saida Almoço</th>
-                <th>Retorno Almoço</th>
-                <th>Saida</th>
-                <th>Total Horas</th>
-                <th>Descrição</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Date.ToString("dd/MM/yyyy")</td>
-                    <td>@item.HoraEntrada</td>
-                    <td>@item.HoraSaidaAlmoco</td>
-                    <td>@item.HoraRetornoAlmoco</td>
-                    <td>@item.HoraSaida</td>
-                    <td>@item.TotalHoras</td>
-                    @*<td>@item.TotalHorasConvertidas</td>*@
-                    <td>@item.DescricaoAtividades</td>
-                    <td>
-                        <a asp-action="Atualizar" asp-route-id="@item.CodRegistro" class="btn btn-info">Editar</a>
-                        <a asp-action="Detalhes" asp-route-id="@item.CodRegistro" class="btn btn-warning">Detalhes</a>
-                        <a asp-action="Deletar" asp-route-id="@item.CodRegistro" class="btn btn-danger" onclick="return confirm('Deseja Realmente excluir este registro?')">Exluir</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-</table>
-</div>
+
+<script>
+    
+    $(".edit").click(function () {
+        var id = $(this).attr("data-id");        
+        $("#modal").load("RegistroPonto/Atualizar?id=" + id, function () {
+            $("#modal").show();
+        })
+    });
+
+    $(".details").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("RegistroPonto/Detalhes?id=" + id, function () {
+            $("#modal").show();
+        })
+    });
+
+     $(".delete").click(function () {
+        var id = $(this).attr("data-id");
+        $("#modal").load("RegistroPonto/Deletar?id=" + id, function () {
+            $("#modal").show();
+        })
+    });
+
+    $(".novo").click(function(){
+        $("#modal").load("RegistroPonto/Adicionar", function () {
+            $("#modal").show();
+        })
+            
+    });
+
+</script>

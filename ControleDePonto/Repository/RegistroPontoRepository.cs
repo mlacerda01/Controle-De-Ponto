@@ -32,7 +32,18 @@ namespace ControleDePonto.Repository
             using(var con = new SqlConnection(connection))
             {
                 string sql = @"Insert into RegistroPonto 
-                               values
+                               ( 
+                                    CodUsuario,
+                                    Date, 
+                                    HoraEntrada, 
+                                    HoraSaidaAlmoco, 
+                                    HoraRetornoAlmoco, 
+                                    HoraSaida, 
+                                    TotalHoras, 
+                                    TotalHorasConvertidas, 
+                                    DescricaoAtividades
+                                )
+                                values
                                 ( 
                                     @CodUsuario,
                                     @Date, 
