@@ -72,7 +72,7 @@ namespace ControleDePonto.Controllers
 
             var registro = _registroPonto.Get(id.Value);
 
-            return View(registro);
+            return PartialView(registro);
         }
         [HttpPost]
         public IActionResult Deletar(RegistroPonto registro)
@@ -80,9 +80,13 @@ namespace ControleDePonto.Controllers
             if(registro.CodRegistro == 0)
                 return View();
             
-            ViewBag.CodMensagem = _registroPonto.Delete(registro.CodRegistro);
-            return RedirectToAction("Index");
-            
+            int codRetorno = _registroPonto.Delete(registro.CodRegistro);
+
+            if (codRetorno == 1)
+                return RedirectToAction("Index", "RegistroPonto");
+            else
+                return View(registro);
+
         }
 
         [HttpGet]

@@ -40,7 +40,6 @@ namespace ControleDePonto.Repository
                                     HoraRetornoAlmoco, 
                                     HoraSaida, 
                                     TotalHoras, 
-                                    TotalHorasConvertidas, 
                                     DescricaoAtividades
                                 )
                                 values
@@ -52,7 +51,6 @@ namespace ControleDePonto.Repository
                                     @HoraRetornoAlmoco, 
                                     @HoraSaida, 
                                     @TotalHoras, 
-                                    @TotalHorasConvertidas, 
                                     @DescricaoAtividades
                                 );
 
