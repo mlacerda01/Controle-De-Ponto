@@ -4,7 +4,10 @@
     <div class="modal-content">
         <div class="modal-header" style="background:black; color:#ffffff; color:#ffffff;">
             <a type="button" asp-action="Index" class="close" style="color:#ffffff;" data-dismiss="modal">x</a>
-            <h4 class="modal-title">Editar Registro</h4>
+            <h4 class="modal-title">Novo Registro</h4>
+        </div>
+        <div id="mensagem">
+
         </div>
         <form asp-action="Adicionar" id="frmCadastroPonto" class="form-group col-md-12" method="post">
 
@@ -12,7 +15,8 @@
                 <div class="form-row">
                     <div class="form-group col-md-5">
                         <label asp-for="Date"></label>
-                        <input class="form-control" type="date" asp-for="Date" />
+                        <input class="form-control" type="date" asp-for="Date" />      
+                        <span asp-validation-for="Date" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-8">
 
@@ -22,20 +26,24 @@
                     <div class="form-group col-md-6">
                         <label asp-for="HoraEntrada" style="box-sizing:inherit;"></label>
                         <input class="form-control" type="time" asp-for="HoraEntrada" />
+                        <span asp-validation-for="HoraEntrada" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="HoraSaidaAlmoco"></label>
                         <input class="form-control" type="time" asp-for="HoraSaidaAlmoco" />
+                        <span asp-validation-for="HoraSaidaAlmoco" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label asp-for="HoraRetornoAlmoco"></label>
                         <input class="form-control" type="time" asp-for="HoraRetornoAlmoco" />
+                        <span asp-validation-for="HoraRetornoAlmoco" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label asp-for="HoraSaida"></label>
                         <input class="form-control" type="time" asp-for="HoraSaida" />
+                        <span asp-validation-for="HoraSaida" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row">
@@ -52,7 +60,7 @@
 
                 </div>
                 <div class="col-md-4">
-                    <input type="submit" value="Cadastrar" onclick="cadastrarPonto();" class="btn btn-primary" style="background:black; color:#ffffff;" />
+                    <input type="submit" value="Salvar" onclick="cadastrarPonto();" class="btn btn-primary" style="background:black; color:#ffffff;" />
                     <a asp-action="Index" class="btn btn-primary" style="background:black; color:#ffffff;">Voltar</a>
                 </div>
 
@@ -62,7 +70,7 @@
 </div>
 
 <script>
-    function cadastrarPonto() {
+    function cadastrarPonto() {        
         document.getElementById("frmCadastroPonto").submit();
     }
 </script>

@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ControleDePonto.Models;
 using ControleDePonto.Repository;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using OfficeOpenXml;
@@ -31,7 +33,7 @@ namespace ControleDePonto.Controllers
 
         [HttpGet]
         public IActionResult Adicionar(int? id)
-        {
+        {           
             return View();
         }
 
@@ -55,7 +57,7 @@ namespace ControleDePonto.Controllers
 
         [HttpGet]
         public IActionResult Detalhes(int? id)
-        {
+        {          
             if (!id.HasValue)
                 return NotFound();
 
@@ -74,10 +76,11 @@ namespace ControleDePonto.Controllers
 
             return PartialView(registro);
         }
+
         [HttpPost]
         public IActionResult Deletar(RegistroPonto registro)
-        {           
-            if(registro.CodRegistro == 0)
+        {
+            if (registro.CodRegistro == 0)
                 return View();
             
             int codRetorno = _registroPonto.Delete(registro.CodRegistro);
@@ -179,6 +182,6 @@ namespace ControleDePonto.Controllers
             string tipoArquivo = "application/xlsx";
             return File(bytesArquivo, tipoArquivo, fileName);
 
-        }        
+        }
     }
 }

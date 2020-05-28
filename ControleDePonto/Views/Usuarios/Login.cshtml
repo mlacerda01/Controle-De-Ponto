@@ -1,0 +1,45 @@
+﻿@model ControleDePonto.Models.Usuario
+
+    <div class="row col-6">
+        @if (ViewBag.Codigo == 0)
+        {
+            <div class="alert alert-success">
+                @ViewBag.Mensagem
+            </div>
+        }
+        else if (ViewBag.Codigo == 1)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Mensagem
+            </div>
+        }
+        <form asp-action="Entrar">
+            <div class="panel panel-primary" style="border-color: black;">
+                <div class="panel-heading" style="background: black;">
+                    <h3 class="panel-title">Para acessar nosso sistema, informe e-mail e senha:</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="">
+                        <div class="form-group">
+                            <label asp-for="Email" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input asp-for="Email" class="form-control" placeholder="E-mail" />
+                                <span asp-validation-for="Email" class="text-danger" />
+                            </div>
+                            <label asp-for="Senha" class="col-md-2 control-label"></label>
+                            <div class="col-md-10">
+                                <input type="password" asp-for="Senha" class="form-control" placeholder="Senha" />
+                                <span asp-validation-for="Senha" class="text-danger" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div>
+                        <input type="submit" class="btn btn-info" value="Acessar" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
